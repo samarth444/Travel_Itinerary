@@ -1,36 +1,59 @@
 package com.travel.travel_itinerary.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "bookings")
 public class Booking {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private User user;  // Ensure this field exists
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @ManyToOne
-    private Itinerary itinerary;
+    private LocalDate date;
+    private String destination;
 
-    private LocalDate bookingDate;
-    private String status;
+    // Default constructor
+    public Booking() {}
+
+    // Constructor
+    public Booking(User user, LocalDate date, String destination) {
+        this.user = user;
+        this.date = date;
+        this.destination = destination;
+    }
 
     // Getters and Setters
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public User getUser() { return user; }  // Ensure this method exists
-    public void setUser(User user) { this.user = user; }
+    public User getUser() {
+        return user;
+    }
 
-    public Itinerary getItinerary() { return itinerary; }
-    public void setItinerary(Itinerary itinerary) { this.itinerary = itinerary; }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-    public LocalDate getBookingDate() { return bookingDate; }
-    public void setBookingDate(LocalDate bookingDate) { this.bookingDate = bookingDate; }
+    public LocalDate getDate() {  // <--- Ensure this method exists
+        return date;
+    }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getDestination() { // <--- Ensure this method exists
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
 }

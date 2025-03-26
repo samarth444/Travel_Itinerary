@@ -15,38 +15,56 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // Create a new user (register)
+    // ✅ Register a new user
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
+        if (user.getEmail() == null || user.getPassword() == null) {
+            return ResponseEntity.badRequest().body("Email and Password are required.");
+        }
+        if (userService.existsByEmail(user.getEmail())) {
+            return ResponseEntity.badRequest().body("Email is already registered.");
+        }
         User newUser = userService.createUser(user);
         return ResponseEntity.ok(newUser);
     }
 
-    // Get a specific user by ID
+    // ✅ Get a specific user by ID
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id);
-        return ResponseEntity.ok(user);
+    public ResponseEntity<?> getUserById(@PathVariable Long id) {
+        try {
+            User user = userService.getUserById(id);
+            return ResponseEntity.ok(user);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body("User not found.");
+        }
     }
 
-    // Get all users
+    // ✅ Get all users
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
-    // Update a user
+    // ✅ Update a user
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
-        User updatedUser = userService.updateUser(id, user);
-        return ResponseEntity.ok(updatedUser);
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user) {
+        try {
+            User updatedUser = userService.updateUser(id, user);
+            return ResponseEntity.ok(updatedUser);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body("User not found.");
+        }
     }
 
-    // Delete a user
+    // ✅ Delete a user
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
-        return ResponseEntity.ok("User deleted successfully");
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+        try {
+            userService.deleteUser(id);
+            return ResponseEntity.ok("User deleted successfully.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body("User not found.");
+        }
     }
 }
