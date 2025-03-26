@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Confirmed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+            margin-top: 50px;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .details {
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="success">Booking Confirmed!</h2>
+
+    <th:block th:if="${flight != null}">
+        <p>Your flight <strong th:text="${flight.flightNumber}"></strong> has been successfully booked.</p>
+        <div class="details">
+            <p><strong>Departure:</strong> <span th:text="${flight.departureTime}"></span></p>
+            <p><strong>Arrival:</strong> <span th:text="${flight.arrivalTime}"></span></p>
+            <p><strong>Price:</strong> ₹<span th:text="${flight.price}"></span></p>
+        </div>
+    </th:block>
+
+    <th:block th:if="${flight == null}">
+        <p style="color: red;">Error: Flight details not found!</p>
+    </th:block>
+
+    <a href="/" class="button">Go to Homepage</a>
+    <a href="/flights" class="button">Back to Flights</a>
+</div>
+
+</body>
+</html>

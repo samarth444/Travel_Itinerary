@@ -1,35 +1,77 @@
 package com.travel.travel_itinerary.controller;
 
+import com.travel.travel_itinerary.model.Flight;
+import com.travel.travel_itinerary.service.FlightService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
+@RequestMapping("/flights")
 public class FlightController {
 
-    @GetMapping("/flights")
-    public String flightPage(Model model) {
+    private final FlightService flightService;
+
+    public FlightController(FlightService flightService) {
+        this.flightService = flightService;
+    }
+
+    /**
+     * ✅ Displays the flight search page
+     */
+    @GetMapping
+    public String flightPage(@RequestParam(value = "error", required = false) String error, Model model) {
         model.addAttribute("pageTitle", "Flight Booking");
-        return "flights"; // Renders flights.html
+
+        if (error != null) {
+            model.addAttribute("error", error);
+        }
+
+        return "flight_search"; // Matches your Thymeleaf template
     }
 
-    @GetMapping("/flights/search")
-    public String showFlightSearchPage() {
-        return "flight_search"; // Renders flight_search.html
-    }
-
-    @GetMapping("/flights/results")
-    public String showFlightResults(@RequestParam String from,
-                                    @RequestParam String to,
-                                    @RequestParam String date,
+    /**
+     * ✅ Searches and displays available flights
+     */
+    @GetMapping("/results")
+    public String showFlightResults(@RequestParam(required = false) String from,
+                                    @RequestParam(required = false) String to,
+                                    @RequestParam(required = false) String date,
                                     Model model) {
-        // Simulated flight results (replace with actual service logic)
+        if (from == null || to == null || date == null || from.isBlank() || to.isBlank() || date.isBlank()) {
+            model.addAttribute("error", "All fields are required.");
+            return "flight_search";
+        }
+
+        List<Flight> flights = flightService.getFlights(from, to, date);
+
         model.addAttribute("from", from);
         model.addAttribute("to", to);
         model.addAttribute("date", date);
-        model.addAttribute("flights", new String[]{"Flight A - 10:00 AM", "Flight B - 2:30 PM", "Flight C - 7:00 PM"});
+        model.addAttribute("flights", flights);
 
-        return "flight_results"; // Renders flight_results.html
+        if (flights.isEmpty()) {
+            model.addAttribute("error", "No flights found for the selected route.");
+        }
+
+        return "flight_results"; // Matches your Thymeleaf template
+    }
+
+    /**
+     * ✅ Fetches flight details by flight number
+     */
+    @GetMapping("/details/{flightNumber}")
+    public String flightDetails(@PathVariable String flightNumber, Model model) {
+        Flight flight = flightService.getFlightByNumber(flightNumber);
+
+        if (flight == null) {
+            model.addAttribute("error", "Flight not found.");
+            return "flight_results";
+        }
+
+        model.addAttribute("flight", flight);
+        return "flight_details"; // Matches your Thymeleaf template
     }
 }

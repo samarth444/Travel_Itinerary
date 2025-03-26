@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .search-form, .results-container {
+            margin: 20px auto;
+            width: 400px;
+            text-align: left;
+        }
+        label, input {
+            display: block;
+            margin: 10px 0;
+            width: 100%;
+        }
+        button {
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .flight-table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        .flight-table th, .flight-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .flight-table th {
+            background-color: #f4f4f4;
+        }
+        .details-link {
+            color: blue;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Flight Search Results</h2>
+
+<!-- Flight Search Form -->
+<form action="/flights/results" method="get" class="search-form">
+    <label>From:</label>
+    <input type="text" name="from" th:value="${from}" required>
+
+    <label>To:</label>
+    <input type="text" name="to" th:value="${to}" required>
+
+    <label>Date:</label>
+    <input type="date" name="date" th:value="${date}" required>
+
+    <button type="submit">Search Flights</button>
+</form>
+
+<!-- Show error messages if any -->
+<p th:if="${error}" style="color: red;" th:text="${error}"></p>
+
+<!-- Flight Results Table -->
+<div th:if="${flights != null and !flights.isEmpty()}">
+    <table class="flight-table">
+        <thead>
+        <tr>
+            <th>Airline</th>
+            <th>Flight No</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>Duration</th>
+            <th>Price</th>
+            <th>Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="flight : ${flights}">
+            <td th:text="${flight.airline}"></td>
+            <td th:text="${flight.flightNumber}"></td>
+            <td th:text="${flight.departureTime}"></td>
+            <td th:text="${flight.arrivalTime}"></td>
+            <td th:text="${flight.duration}"></td>
+            <td th:text="'₹' + ${flight.price}"></td>
+            <td>
+                <a th:href="@{/flights/details/{flightNumber}(flightNumber=${flight.flightNumber})}" class="details-link">
+                    View Details
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
