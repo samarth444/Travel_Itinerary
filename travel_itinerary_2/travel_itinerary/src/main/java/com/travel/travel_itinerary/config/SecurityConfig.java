@@ -4,8 +4,6 @@ import com.travel.travel_itinerary.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,34 +30,23 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(passwordEncoder());
-        return provider;
-    }
-
-    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable()) // Disable CSRF for development (enable in production)
+        http.csrf(csrf -> csrf.disable()) // Disable CSRF for development
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/auth/login", "/auth/register", "/css/**", "/js/**").permitAll() // ✅ Public access to home page
-                        .requestMatchers("/dashboard", "/logout").authenticated() // Requires authentication
+                        .requestMatchers("/auth/login", "/auth/register", "/css/**", "/js/**").permitAll() // Public
+                        .requestMatchers("/dashboard", "/logout").authenticated() // Secure dashboard & logout
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
                         .loginPage("/auth/login") // Custom login page
-                        .loginProcessingUrl("/do-login") // Spring Security login endpoint
-                        .usernameParameter("email") // Use email for login
-                        .passwordParameter("password")
-                        .defaultSuccessUrl("/", true) // ✅ Redirect to home page after login
-                        .failureUrl("/auth/login?error=true") // Redirect on login failure
+                        .loginProcessingUrl("/do-login") // Authentication handler
+                        .defaultSuccessUrl("/dashboard", true) // Redirect after login
+                        .failureUrl("/auth/login?error=true")
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout") // Logout endpoint
-                        .logoutSuccessUrl("/") // ✅ Redirect to home page after logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/auth/login?logout=true")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll()

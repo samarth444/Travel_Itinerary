@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Flights</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <h1>Search Flights</h1>
+    <p>Find the best flights at the best prices.</p>
+</header>
+
+<main>
+    <form action="/flights/results" method="get">
+        <label for="from">Departure:</label>
+        <input type="text" id="from" name="from" placeholder="Enter departure city" required>
+
+        <label for="to">Destination:</label>
+        <input type="text" id="to" name="to" placeholder="Enter destination city" required>
+
+        <label for="date">Travel Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <button type="submit">Search Flights</button>
+    </form>
+</main>
+</body>
+</html>

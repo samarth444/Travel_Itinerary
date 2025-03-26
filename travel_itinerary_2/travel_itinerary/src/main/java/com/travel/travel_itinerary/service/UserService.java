@@ -1,11 +1,9 @@
+
 package com.travel.travel_itinerary.service;
 
 import com.travel.travel_itinerary.model.User;
 import com.travel.travel_itinerary.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -42,10 +40,12 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
+    // ✅ ADD THESE METHODS BELOW TO FIX YOUR ERROR
     public User getUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
+
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -55,33 +55,12 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id).map(user -> {
             user.setUsername(updatedUser.getUsername());
             user.setEmail(updatedUser.getEmail());
-
-            // Only update password if it's not null and different
-            if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
-                user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
-            }
-
+            user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
             return userRepository.save(user);
         }).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public void deleteUser(Long id) {
-        if (!userRepository.existsById(id)) {
-            throw new RuntimeException("User not found");
-        }
         userRepository.deleteById(id);
-    }
-
-    // ✅ Required for Spring Security authentication
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
-
-        return org.springframework.security.core.userdetails.User.builder()
-                .username(user.getEmail())
-                .password(user.getPassword())
-                .roles(user.getRole().replace("ROLE_", "")) // Converts "ROLE_USER" to "USER"
-                .build();
     }
 }
