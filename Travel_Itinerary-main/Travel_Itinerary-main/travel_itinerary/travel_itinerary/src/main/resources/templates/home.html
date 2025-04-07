@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home - Travel Itinerary</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/auth/login}">Login</a></li>
+            <li><a th:href="@{/auth/register}">Register</a></li>
+            <li><a th:href="@{/flights/book}">Book a Flight</a></li> <!-- Added Book a Flight link -->
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h1>Welcome to Travel Itinerary</h1>
+    <p>Plan and book your perfect trip with ease.</p>
+
+    <div class="booking-container">
+        <!-- Flight Booking Card -->
+        <div class="booking-card">
+            <img th:src="@{/images/flight.jpg}" alt="Flight Booking">
+            <h2>Flight Booking</h2>
+            <p>Find the best flights at the best prices.</p>
+            <a th:href="@{/flights}" class="btn">Book Now</a>
+        </div>
+
+        <!-- Hotel Booking Card -->
+        <div class="booking-card">
+            <img th:src="@{/images/hotel.jpg}" alt="Hotel Booking">
+            <h2>Hotel Booking</h2>
+            <p>Book your stay at the best hotels worldwide.</p>
+            <a th:href="@{/hotels}" class="btn">Book Now</a>
+        </div>
+
+        <!-- Tour Packages Card -->
+        <div class="booking-card">
+            <img th:src="@{/images/tour.jpg}" alt="Tour Booking">
+            <h2>Tour Packages</h2>
+            <p>Explore amazing destinations with our tour packages.</p>
+            <a th:href="@{/tours}" class="btn">View Packages</a>
+        </div>
+
+        <!-- Car Rentals Card -->
+        <div class="booking-card">
+            <img th:src="@{/images/car.jpg}" alt="Car Booking">
+            <h2>Car Rentals</h2>
+            <p>Rent a car for your comfortable journey.</p>
+            <a th:href="@{/cars}" class="btn">Rent Now</a>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

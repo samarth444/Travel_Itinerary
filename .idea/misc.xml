@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Travel_Itinerary-main/Travel_Itinerary-main/travel_itinerary/travel_itinerary/pom.xml" />
+        <option value="$PROJECT_DIR$/Travel_Itinerary-main/Travel_Itinerary-main/travel_itinerary_1/travel_itinerary/pom.xml" />
+        <option value="$PROJECT_DIR$/Travel_Itinerary-main/Travel_Itinerary-main/travel_itinerary_2/travel_itinerary/pom.xml" />
+        <option value="$PROJECT_DIR$/Travel_Itinerary-main/Travel_Itinerary-main/travel_itinerary_3/travel_itinerary/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
