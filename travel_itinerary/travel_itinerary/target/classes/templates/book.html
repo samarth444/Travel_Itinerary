@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Confirm Your Booking</h2>
+
+    <th:block th:if="${flight != null}">
+        <p><strong>Flight:</strong> <span th:text="${flight.flightNumber}"></span></p>
+        <p><strong>Departure:</strong> <span th:text="${flight.departureTime}"></span></p>
+        <p><strong>Arrival:</strong> <span th:text="${flight.arrivalTime}"></span></p>
+        <p><strong>Price:</strong> ₹<span th:text="${flight.price}"></span></p>
+
+        <form action="/flights/confirm" method="POST">
+            <input type="hidden" name="flightNumber" th:value="${flight.flightNumber}">
+            <button type="submit">Confirm Booking</button>
+        </form>
+    </th:block>
+
+    <th:block th:if="${flight == null}">
+        <p class="error">Error: Flight details not found!</p>
+    </th:block>
+</div>
+
+</body>
+</html>

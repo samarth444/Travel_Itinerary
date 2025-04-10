@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: blue;
+        }
+        .flight-info {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .flight-info p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .btn-container {
+            margin-top: 20px;
+        }
+        .btn {
+            background-color: blue;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Flight Details</h2>
+
+    <div class="flight-info">
+        <p><strong>Airline:</strong> <span th:text="${flight.airline}"></span></p>
+        <p><strong>Flight Number:</strong> <span th:text="${flight.flightNumber}"></span></p>
+        <p><strong>Departure Time:</strong> <span th:text="${flight.departureTime}"></span></p>
+        <p><strong>Arrival Time:</strong> <span th:text="${flight.arrivalTime}"></span></p>
+        <p><strong>Duration:</strong> <span th:text="${flight.duration}"></span></p>
+        <p><strong>Price:</strong> ₹<span th:text="${flight.price}"></span></p>
+    </div>
+
+    <div class="btn-container">
+        <a href="/flights" class="btn">Back to Search</a>
+    </div>
+</div>
+
+</body>
+</html>

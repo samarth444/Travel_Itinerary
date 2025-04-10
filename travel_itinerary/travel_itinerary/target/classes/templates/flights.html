@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Search</title>
+</head>
+<body>
+<h2>Flight Booking</h2>
+<p>Find the best flights at the best prices.</p>
+
+<form action="/flights/results" method="GET">
+    <label>From:</label>
+    <input type="text" name="from" required>
+
+    <label>To:</label>
+    <input type="text" name="to" required>
+
+    <label>Date:</label>
+    <input type="date" name="date" required>
+
+    <button type="submit">Search Flights</button>
+</form>
+</body>
+</html>
