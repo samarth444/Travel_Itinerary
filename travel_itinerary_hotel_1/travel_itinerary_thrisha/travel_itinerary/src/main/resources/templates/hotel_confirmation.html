@@ -1,0 +1,16 @@
+<!-- confirmation.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Booking Confirmation</title>
+</head>
+<body>
+<h1>Hotel Booking Confirmation</h1>
+<p th:text="${message}"></p>
+
+<div th:if="${hotel}">
+    <p><strong>Hotel:</strong> <span th:text="${hotel.name}"></span></p>
+    <p><strong>Location:</strong> <span th:text="${hotel.location}"></span></p>
+</div>
+</body>
+</html>

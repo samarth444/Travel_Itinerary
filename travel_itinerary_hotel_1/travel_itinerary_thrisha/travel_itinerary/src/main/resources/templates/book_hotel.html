@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Hotel</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<h1>Hotel Booking Page</h1>
+
+<div th:if="${hotel != null}">
+    <h2 th:text="${hotel.name}">Hotel Name</h2>
+    <p><strong>Location:</strong> <span th:text="${hotel.location}">Location</span></p>
+    <p><strong>Room Type:</strong> <span th:text="${hotel.roomType}">Room Type</span></p>
+    <p><strong>Guests:</strong> <span th:text="${hotel.guests}">Guests</span></p>
+    <p><strong>Check-in:</strong> <span th:text="${hotel.checkInDate}">Check-in</span></p>
+    <p><strong>Check-out:</strong> <span th:text="${hotel.checkOutDate}">Check-out</span></p>
+    <p><strong>Price per night:</strong> ₹<span th:text="${hotel.pricePerNight}">Price</span></p>
+    <p><strong>Total Nights:</strong> <span th:text="${hotel.totalNights}">Nights</span></p>
+    <p><strong>Total Price:</strong> ₹<span th:text="${hotel.totalPrice}">Total</span></p>
+
+    <form th:action="@{/hotels/confirm}" method="post">
+        <input type="hidden" name="hotelId" th:value="${hotel.id}" />
+        <input type="hidden" name="userId" th:value="${userId}" />
+        <button type="submit">Confirm Booking</button>
+    </form>
+</div>
+
+<div th:if="${hotel == null}">
+    <p>Hotel details not available.</p>
+</div>
+
+</body>
+</html>

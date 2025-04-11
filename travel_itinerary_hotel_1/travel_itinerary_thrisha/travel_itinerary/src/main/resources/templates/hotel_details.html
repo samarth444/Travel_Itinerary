@@ -1,0 +1,26 @@
+<!-- hotel_details.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hotel Details</title>
+</head>
+<body>
+<h1>Hotel Details</h1>
+<div th:if="${hotel}">
+    <h2 th:text="${hotel.name}"></h2>
+    <p><strong>Location:</strong> <span th:text="${hotel.location}"></span></p>
+    <p><strong>Check-In:</strong> <span th:text="${hotel.checkInDate}"></span></p>
+    <p><strong>Check-Out:</strong> <span th:text="${hotel.checkOutDate}"></span></p>
+    <p><strong>Total Nights:</strong> <span th:text="${hotel.totalNights}"></span></p>
+    <p><strong>Total Price:</strong> ₹<span th:text="${hotel.totalPrice}"></span></p>
+
+    <form th:action="@{/hotels/confirm}" method="post">
+        <input type="hidden" name="hotelId" th:value="${hotel.id}" />
+        <input type="hidden" name="userId" th:value="${userId}" />
+        <button type="submit">Confirm Booking</button>
+    </form>
+</div>
+
+<p th:if="${error}" th:text="${error}"></p>
+</body>
+</html>

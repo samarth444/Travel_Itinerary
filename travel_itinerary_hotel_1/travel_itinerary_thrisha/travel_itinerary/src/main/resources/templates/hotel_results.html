@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Results</title>
+</head>
+<body>
+<h1>Hotel Results</h1>
+
+<div th:if="${error}">
+    <p th:text="${error}"></p>
+</div>
+
+<div th:if="${hotels}">
+    <ul>
+        <li th:each="hotel : ${hotels}">
+            <strong th:text="${hotel.name}">Hotel Name</strong><br>
+            <span th:text="${hotel.location}">Location</span><br>
+            <span th:text="${hotel.pricePerNight}">Price</span> ₹/night<br>
+            <a th:href="@{|/hotel/view/${hotel.id}|}">View</a> |
+            <a th:href="@{|/hotel/book/${hotel.id}?userId=${userId}|}">Book</a>
+            <br><br>
+        </li>
+    </ul>
+</div>
+
+<div th:if="${totalPages > 1}">
+    <p>Page <span th:text="${currentPage + 1}"></span> of <span th:text="${totalPages}"></span></p>
+    <div>
+        <a th:if="${currentPage > 0}"
+           th:href="@{|/hotel/search?page=${currentPage - 1}&size=5&location=${location}&checkIn=${checkIn}&checkOut=${checkOut}|}">Previous</a>
+
+        <a th:if="${currentPage + 1 < totalPages}"
+           th:href="@{|/hotel/search?page=${currentPage + 1}&size=5&location=${location}&checkIn=${checkIn}&checkOut=${checkOut}|}">Next</a>
+    </div>
+</div>
+
+<a href="/hotel/book">← Back to Search</a>
+</body>
+</html>
