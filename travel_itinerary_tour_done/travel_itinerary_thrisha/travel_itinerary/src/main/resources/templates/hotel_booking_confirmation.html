@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hotel Booking Confirmation</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<h1>Booking Confirmed!</h1>
+
+<div>
+    <h2>Guest Details</h2>
+    <p><strong>Name:</strong> <span th:text="${booking.guestName}">Guest Name</span></p>
+    <p><strong>Email:</strong> <span th:text="${booking.email}">guest@example.com</span></p>
+    <p><strong>Phone:</strong> <span th:text="${booking.phone}">1234567890</span></p>
+
+    <h2>Booking Details</h2>
+    <p><strong>Hotel:</strong> <span th:text="${booking.hotel.name}">Hotel Name</span></p>
+    <p><strong>Location:</strong> <span th:text="${booking.hotel.location}">Location</span></p>
+    <p><strong>Check-In Date:</strong> <span th:text="${booking.checkInDate}">YYYY-MM-DD</span></p>
+    <p><strong>Check-Out Date:</strong> <span th:text="${booking.checkOutDate}">YYYY-MM-DD</span></p>
+    <p><strong>Room Type:</strong> <span th:text="${booking.roomType}">Room Type</span></p>
+    <p><strong>Adults:</strong> <span th:text="${booking.adults}">0</span></p>
+    <p><strong>Children:</strong> <span th:text="${booking.children}">0</span></p>
+    <p><strong>Total Nights:</strong> <span th:text="${booking.totalNights}">0</span></p>
+    <p><strong>Total Price:</strong> ₹<span th:text="${booking.totalPrice}">0.00</span></p>
+</div>
+
+<br/>
+<a th:href="@{/hotels}">← Back to Hotels</a>
+</body>
+</html>

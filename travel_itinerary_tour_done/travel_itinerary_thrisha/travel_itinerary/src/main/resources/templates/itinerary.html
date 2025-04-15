@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Itinerary for ' + ${tourPackage.name}">Itinerary for Tour</title>
+    <style>
+        .itinerary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .itinerary-table th, .itinerary-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .itinerary-table th {
+            background-color: #f4f4f4;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+<h1 th:text="'Itinerary for ' + ${tourPackage.name}">Itinerary for Tropical Beach Getaway</h1>
+
+<h3>Tour: <span th:text="${tourPackage.name}">Tour Name</span></h3>
+
+<!-- Itinerary Table -->
+<table class="itinerary-table">
+    <thead>
+    <tr>
+        <th>Day</th>
+        <th>Date</th>
+        <th>Destination</th>
+        <th>Accommodation</th>
+        <th>Meal</th>
+        <th>Activity</th>
+        <th>Travel Mode</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>2025-05-01</td>
+        <td>Malé</td>
+        <td>Ocean View Resort</td>
+        <td>Dinner</td>
+        <td>Arrival and check-in, relax at beach</td>
+        <td>Flight</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>2025-05-02</td>
+        <td>Maafushi Island</td>
+        <td>Ocean View Resort</td>
+        <td>Breakfast, Lunch</td>
+        <td>Snorkeling and coral reef tour</td>
+        <td>Boat</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>2025-05-03</td>
+        <td>Vaavu Atoll</td>
+        <td>Ocean View Resort</td>
+        <td>Breakfast, Dinner</td>
+        <td>Island hopping and sunset cruise</td>
+        <td>Boat</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>2025-05-04</td>
+        <td>Malé</td>
+        <td>Ocean View Resort</td>
+        <td>All Meals</td>
+        <td>Leisure day at the resort with spa</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>2025-05-05</td>
+        <td>Biyadhoo</td>
+        <td>Ocean View Resort</td>
+        <td>Breakfast</td>
+        <td>Water sports: Jet ski, parasailing</td>
+        <td>Boat</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>2025-05-06</td>
+        <td>Gulhi</td>
+        <td>Ocean View Resort</td>
+        <td>Lunch</td>
+        <td>Guided cultural village tour</td>
+        <td>Boat</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>2025-05-07</td>
+        <td>Malé</td>
+        <td>Ocean View Resort</td>
+        <td>Breakfast</td>
+        <td>Check-out and return flight</td>
+        <td>Flight</td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Buttons -->
+<div class="buttons">
+    <!-- Book Button: Link to a booking page or functionality -->
+
+    <a th:href="@{'/tourbookings/book'(tourId=${tourPackage.id})}" class="btn btn-primary">Book Now</a>
+
+    <!-- Go Back Button: Link to the previous page (tour list) -->
+    <a th:href="@{/tours}" class="btn btn-secondary">Go Back</a>
+</div>
+
+</body>
+</html>

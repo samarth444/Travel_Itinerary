@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Booking Confirmation</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Booking Confirmation</h1>
+
+<h3>Your Booking Details</h3>
+
+<p><strong>Tour Package:</strong> <span th:text="${tourBooking.tourPackage.name}">Tour Name</span></p>
+<p><strong>Booked By:</strong> <span th:text="${tourBooking.name}">Name</span></p>
+<p><strong>Email:</strong> <span th:text="${tourBooking.email}">Email</span></p>
+<p><strong>Phone:</strong> <span th:text="${tourBooking.phone}">Phone</span></p>
+<p><strong>Number of People:</strong> <span th:text="${tourBooking.numberOfPeople}">1</span></p>
+<p><strong>Booking Date:</strong> <span th:text="${tourBooking.bookingDate}">2025-04-15</span></p>
+
+<p><strong>Total Price:</strong> ₹<span th:text="${tourBooking.numberOfPeople * tourBooking.tourPackage.price}">0</span></p>
+
+<h4>Thank you for booking with us!</h4>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${hotel.name}">Hotel Details</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        .hotel-info {
+            max-width: 600px;
+        }
+        p {
+            line-height: 1.6;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hotel-info">
+    <h1 th:text="${hotel.name}">Hotel Name</h1>
+
+    <img th:src="@{${hotel.imageUrl}}" alt="Hotel Image" />
+
+    <p><strong>Location:</strong> <span th:text="${hotel.location}">City</span></p>
+    <p><strong>Price per Night:</strong> ₹<span th:text="${hotel.pricePerNight}">0.00</span></p>
+    <p><strong>Description:</strong></p>
+    <p th:text="${hotel.description}">Hotel Description</p>
+
+    <a th:href="@{/hotels/{id}/book(id=${hotel.id})}">Book this Hotel</a><br/>
+    <a th:href="@{/hotels}">← Back to Listings</a>
+</div>
+
+</body>
+</html>
