@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hotel Listings</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<h1>Available Hotels</h1>
+
+<form action="#" th:action="@{/hotels/search}" method="get">
+    <input type="text" name="location" placeholder="Enter location" required>
+    <button type="submit">Search</button>
+</form>
+
+<div th:if="${hotels != null}">
+    <div th:each="hotel : ${hotels}">
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 15px;">
+            <img th:src="${hotel.imageUrl}" alt="Hotel Image" width="300"/>
+            <h2 th:text="${hotel.name}">Hotel Name</h2>
+            <p><strong>Location:</strong> <span th:text="${hotel.location}">City</span></p>
+            <p><strong>Price per Night:</strong> ₹<span th:text="${hotel.pricePerNight}">0.00</span></p>
+            <p th:text="${hotel.description}">Hotel Description</p>
+
+            <a th:href="@{/hotels/{id}(id=${hotel.id})}">View Details</a> |
+            <a th:href="@{/hotels/{id}/book(id=${hotel.id})}">Book Now</a>
+        </div>
+    </div>
+</div>
+
+<div th:if="${hotels.size() == 0}">
+    <p>No hotels found for the selected location.</p>
+</div>
+</body>
+</html>
