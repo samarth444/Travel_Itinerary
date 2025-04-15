@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">Tour Packages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center mb-8" th:text="${pageTitle}">Tour Packages</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden" th:each="tour : ${tourPackages}">
+            <img th:src="${tour.imageUrl}" alt="Tour Image" class="w-full h-64 object-cover">
+
+            <div class="p-4">
+                <h2 class="text-xl font-semibold mb-2" th:text="${tour.name}">Tour Name</h2>
+                <p class="text-gray-600 mb-2" th:text="${tour.description}">Tour Description</p>
+
+                <p class="text-lg font-bold text-blue-500 mt-4">
+                    ₹ <span th:text="${tour.price}">Price</span>
+                </p>
+
+                <p class="text-sm text-gray-500 mt-2" th:text="'Duration: ' + ${tour.duration}">Duration</p>
+                <p class="text-sm text-gray-500" th:text="'Location: ' + ${tour.location}">Location</p>
+                <p class="text-sm text-gray-500" th:text="'Available Spots: ' + ${tour.availableSpots}">Available Spots</p>
+
+                <div class="mt-4">
+                    <a th:href="@{'/tourbookings/book'(tourId=${tour.id})}"
+                       class="block text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
+                        Book Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

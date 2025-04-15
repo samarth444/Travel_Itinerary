@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Itinerary</title>
+</head>
+<body>
+<h1 th:text="${tourPackage.name} + ' - Itinerary'"></h1>
+<p><strong>Location:</strong> <span th:text="${tourPackage.location}"></span></p>
+<p><strong>Duration:</strong> <span th:text="${tourPackage.duration}"></span></p>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Day</th>
+        <th>Activity</th>
+        <th>Destination</th>
+        <th>Accommodation</th>
+        <th>Meal</th>
+        <th>Travel Mode</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${itineraries}">
+        <td th:text="${item.dayNumber}"></td>
+        <td th:text="${item.activityDescription}"></td>
+        <td th:text="${item.destination}"></td>
+        <td th:text="${item.accommodation}"></td>
+        <td th:text="${item.meal}"></td>
+        <td th:text="${item.travelMode}"></td>
+        <td th:text="${item.startDate} + ' to ' + ${item.endDate}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/tourpackages">Back to Tour Packages</a>
+</body>
+</html>
