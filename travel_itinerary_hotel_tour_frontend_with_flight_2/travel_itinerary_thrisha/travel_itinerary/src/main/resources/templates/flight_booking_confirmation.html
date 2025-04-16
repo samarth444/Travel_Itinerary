@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Booking Confirmation</title>
+</head>
+<body>
+<h1>Booking Confirmation</h1>
+
+<h2>Flight Details</h2>
+<p>Flight: <span th:text="${flight.airline}">Airline</span></p>
+<p>Flight Number: <span th:text="${flight.flightNumber}">Flight Number</span></p>
+<p>From: <span th:text="${flight.fromLocation}">From Location</span></p>
+<p>To: <span th:text="${flight.toLocation}">To Location</span></p>
+<p>Departure Time: <span th:text="${flight.departureTime}">Departure Time</span></p>
+
+<h3>Booking Details</h3>
+<p>Number of Passengers: <span th:text="${booking.numberOfPassengers}">1</span></p>
+<p>Total Price: <span th:text="${booking.totalPrice}">Price</span></p>
+<p>Departure Date: <span th:text="${booking.departureDate}">Departure Date</span></p>
+
+<a href="/book-flight/${flight.id}">Go back to booking</a>
+</body>
+</html>

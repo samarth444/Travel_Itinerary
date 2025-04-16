@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tour Package Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto p-6">
+    <!-- Tour Package Header -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <img th:src="@{${tourPackage.imageUrl}}" alt="Tour Image" class="w-full h-56 object-cover">
+        <div class="p-6">
+            <h1 class="text-3xl font-bold mb-4" th:text="${tourPackage.name}"></h1>
+            <p th:text="${tourPackage.description}" class="text-gray-600"></p>
+            <p class="text-xl font-bold mt-4">Price: <span th:text="${tourPackage.price}"></span></p>
+            <p th:text="'Duration: ' + ${tourPackage.duration}" class="text-gray-500"></p>
+            <p th:text="'Location(s): ' + ${tourPackage.locations}" class="text-gray-500"></p>
+            <p th:text="'Available Spots: ' + ${tourPackage.availableSpots}" class="text-gray-500"></p>
+            <p th:text="'Date/Season: ' + ${tourPackage.season}" class="text-gray-500"></p>
+        </div>
+    </div>
+
+    <!-- Detailed Itinerary -->
+    <div class="mt-6 bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold mb-4">Detailed Itinerary</h2>
+        <ul>
+            <li th:each="day : ${tourPackage.itineraryList}" class="border-b border-gray-300 py-4">
+                <h3 class="text-xl font-semibold" th:text="'Day ' + ${day.day}"></h3>
+                <p class="text-gray-600" th:text="${day.activities}"></p>
+                <p class="text-gray-500" th:text="'Location: ' + ${day.destination}"></p>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Availability Calendar -->
+    <div class="mt-6 bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold mb-4">Availability Calendar</h2>
+        <!-- Placeholder for calendar -->
+        <p class="text-gray-500">Check availability on the calendar below.</p>
+        <!-- Implement your calendar here -->
+    </div>
+
+    <!-- Booking Button -->
+    <div class="mt-6">
+        <a th:href="@{/booking/{id}(id=${tourPackage.id})}" class="inline-block bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600">
+            Book This Tour Package
+        </a>
+    </div>
+</div>
+</body>
+</html>
