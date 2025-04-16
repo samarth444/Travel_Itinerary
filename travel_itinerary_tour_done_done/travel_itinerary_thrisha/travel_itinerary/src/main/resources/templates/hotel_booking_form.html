@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Hotel</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background-color: #f8f8f8;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.25rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Book <span th:text="${hotel.name}">Hotel Name</span></h1>
+
+<form th:action="@{'/hotelbookings/' + ${hotel.id} + '/book'}" method="post">
+
+    <label for="guestName">Full Name:</label>
+    <input type="text" id="guestName" name="guestName" placeholder="Your full name" required />
+
+    <label for="email">Email ID:</label>
+    <input type="email" id="email" name="email" placeholder="your@email.com" required />
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" placeholder="e.g., +91XXXXXXXXXX" required />
+
+    <label for="checkInDate">Check-In Date:</label>
+    <input type="date" id="checkInDate" name="checkInDate" required />
+
+    <label for="checkOutDate">Check-Out Date:</label>
+    <input type="date" id="checkOutDate" name="checkOutDate" required />
+
+    <label for="roomType">Room Type:</label>
+    <select id="roomType" name="roomType" required>
+        <option value="Standard">Standard</option>
+        <option value="Deluxe">Deluxe</option>
+        <option value="Suite">Suite</option>
+    </select>
+
+    <label for="adults">Number of Adults:</label>
+    <input type="number" id="adults" name="adults" min="1" required />
+
+    <label for="children">Number of Children:</label>
+    <input type="number" id="children" name="children" min="0" required />
+
+    <button type="submit">Book Now</button>
+</form>
+
+<a th:href="@{/hotels}">← Back to Listings</a>
+
+</body>
+</html>

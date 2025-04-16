@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">Tour Packages</title>
+    <style>
+        .tour-package {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .tour-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .tour-package h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .tour-package p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            margin: 0 5px;
+            padding: 8px 15px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${pageTitle}"></h1>
+
+<div th:if="${tourPackages != null}">
+    <div th:each="tour : ${tourPackages}">
+        <div class="tour-package">
+            <!-- Display image of the tour package -->
+            <img th:src="@{${tour.imageUrl}}" alt="Tour Image" class="tour-image" />
+
+            <!-- Display name, description, and other details -->
+            <h2 th:text="${tour.name}">Tour Name</h2>
+            <p th:text="${tour.description}">Tour Description</p>
+            <p><strong>Price:</strong> ₹ <span th:text="${tour.price}"></span></p>
+            <p><strong>Duration:</strong> <span th:text="${tour.duration}"></span> Days</p>
+
+            <!-- Link to view itinerary -->
+            <a th:href="@{/tours/{tourId}/itinerary(tourId=${tour.id})}" class="btn">View Itinerary</a>
+        </div>
+    </div>
+</div>
+
+<!-- Pagination Controls -->
+<div class="pagination" th:if="${totalPages > 1}">
+    <a th:href="@{/tours(page=${currentPage - 1})}" th:if="${currentPage > 1}">Previous</a>
+    <span th:text="${currentPage}">1</span>
+    <a th:href="@{/tours(page=${currentPage + 1})}" th:if="${currentPage < totalPages}">Next</a>
+</div>
+</body>
+</html>

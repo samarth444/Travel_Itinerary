@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Itinerary for ' + ${tourPackage.name}">Itinerary for Tour</title>
+    <style>
+        /* Existing styles */
+    </style>
+</head>
+<body>
+
+<h1 th:text="'Itinerary for ' + ${tourPackage.name}">Itinerary for Tropical Beach Getaway</h1>
+
+<h3>Tour: <span th:text="${tourPackage.name}">Tour Name</span></h3>
+
+<!-- Itinerary Table -->
+<table class="itinerary-table">
+    <thead>
+    <tr>
+        <th>Day</th>
+        <th>Date</th>
+        <th>Destination</th>
+        <th>Accommodation</th>
+        <th>Meal</th>
+        <th>Activity</th>
+        <th>Travel Mode</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop over the itineraries list -->
+    <tr th:each="itinerary : ${itineraries}">
+        <td th:text="${itinerary.dayNumber}">1</td>
+        <td th:text="${itinerary.startDate}">2025-05-01</td>
+        <td th:text="${itinerary.destination}">Malé</td>
+        <td th:text="${itinerary.accommodation}">Ocean View Resort</td>
+        <td th:text="${itinerary.meal}">Dinner</td>
+        <td th:text="${itinerary.activityDescription}">Arrival and check-in, relax at beach</td>
+        <td th:text="${itinerary.travelMode}">Flight</td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Buttons -->
+<div class="buttons">
+    <a th:href="@{'/tourbookings/book'(tourId=${tourPackage.id})}" class="btn btn-primary">Book Now</a>
+    <a th:href="@{/tours}" class="btn btn-secondary">Go Back</a>
+</div>
+
+</body>
+</html>
