@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Car Rentals</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h2>Car Rentals</h2>
+<p>Rent a car for your comfortable journey.</p>
+<form action="/cars/book" method="post">
+    <label for="pickup">Pickup Location:</label>
+    <input type="text" id="pickup" name="pickup" required>
+
+    <label for="dropoff">Dropoff Location:</label>
+    <input type="text" id="dropoff" name="dropoff" required>
+
+    <label for="pickupDate">Pickup Date:</label>
+    <input type="date" id="pickupDate" name="pickupDate" required>
+
+    <label for="returnDate">Return Date:</label>
+    <input type="date" id="returnDate" name="returnDate" required>
+
+    <button type="submit">Search Cars</button>
+</form>
+</body>
+</html>
