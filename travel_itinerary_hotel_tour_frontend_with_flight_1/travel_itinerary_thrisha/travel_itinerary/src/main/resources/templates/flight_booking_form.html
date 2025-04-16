@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Booking</title>
+</head>
+<body>
+<h1>Book Flight</h1>
+
+<form th:action="@{/book-flight/{flightId}(flightId=${flight.id})}"
+      th:object="${booking}" method="post">
+
+    <!-- Passenger Name -->
+    <label for="passengerName">Passenger Name:</label>
+    <input type="text" id="passengerName" name="passengerName"
+           th:value="*{passengerName}" required/><br><br>
+
+    <!-- Email -->
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"
+           th:value="*{email}" required/><br><br>
+
+    <!-- Phone -->
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone"
+           th:value="*{phone}" required/><br><br>
+
+    <!-- Number of Passengers -->
+    <label for="numberOfPassengers">Number of Passengers:</label>
+    <input type="number" id="numberOfPassengers" name="numberOfPassengers"
+           th:value="*{numberOfPassengers}" min="1" required/><br><br>
+
+    <!-- Departure Date -->
+    <label for="departureDate">Departure Date:</label>
+    <input type="date" id="departureDate" name="departureDate"
+           th:value="*{departureDate}" required/><br><br>
+
+    <button type="submit">Book Flight</button>
+</form>
+</body>
+</html>
