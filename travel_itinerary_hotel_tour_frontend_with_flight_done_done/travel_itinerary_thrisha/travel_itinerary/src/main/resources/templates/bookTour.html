@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Tour</title>
+</head>
+<body>
+
+<h1 th:text="'Booking: ' + ${tourPackage.name}">Book Tropical Beach Getaway</h1>
+
+<p>Tour Package: <span th:text="${tourPackage.name}">Tropical Beach Getaway</span></p>
+<p>Price: <span th:text="${tourPackage.price}">$1499.99</span></p>
+
+<!-- Add form or booking functionality here -->
+
+<a href="/tours">Go Back</a>
+
+</body>
+</html>
