@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css">
+</head>
+<body class="bg-gradient-to-br from-green-50 to-green-100 min-h-screen flex items-center justify-center">
+
+<div class="max-w-3xl w-full bg-white p-10 rounded-2xl shadow-2xl">
+    <!-- Heading -->
+    <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-green-700 mb-2">Booking Confirmed!</h1>
+        <p class="text-lg text-gray-600">Your tour has been successfully booked 🎉</p>
+    </div>
+
+    <!-- Booking Details -->
+    <div class="space-y-4 text-gray-800 text-base">
+        <div class="flex justify-between">
+            <span class="font-semibold">Tour Package:</span>
+            <span th:text="${tourBooking.tourPackage.name}">Tropical Paradise</span>
+        </div>
+        <div class="flex justify-between">
+            <span class="font-semibold">Booked By:</span>
+            <span th:text="${tourBooking.name}">John Doe</span>
+        </div>
+        <div class="flex justify-between">
+            <span class="font-semibold">Email:</span>
+            <span th:text="${tourBooking.email}">john@example.com</span>
+        </div>
+        <div class="flex justify-between">
+            <span class="font-semibold">Phone:</span>
+            <span th:text="${tourBooking.phone}">+91 9876543210</span>
+        </div>
+        <div class="flex justify-between">
+            <span class="font-semibold">Number of People:</span>
+            <span th:text="${tourBooking.numberOfPeople}">2</span>
+        </div>
+        <div class="flex justify-between">
+            <span class="font-semibold">Booking Date:</span>
+            <span th:text="${tourBooking.bookingDate}">2025-04-16</span>
+        </div>
+        <div class="flex justify-between text-lg font-bold text-green-700 mt-4">
+            <span>Total Amount:</span>
+            <span>$<span th:text="${tourBooking.totalAmount}">1200</span></span>
+        </div>
+    </div>
+
+    <!-- Thank You Message -->
+    <div class="mt-10 text-center">
+        <p class="text-xl font-semibold text-gray-700">Thank you for booking with us!</p>
+        <p class="text-sm text-gray-500 mt-1">We hope you have a wonderful journey ✈️</p>
+
+        <!-- Back to Tours Button -->
+        <a th:href="@{/tours}" class="inline-block mt-6 px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition">
+            Explore More Tours
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
