@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Booking Confirmation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+
+<div class="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md mt-12">
+    <h1 class="text-3xl font-bold text-green-600 text-center mb-8">Booking Confirmed!</h1>
+
+    <!-- Guest Details Section -->
+    <div class="space-y-6">
+        <h2 class="text-2xl font-semibold text-gray-800">Guest Details</h2>
+        <div class="space-y-2 text-gray-600">
+            <p><strong>Name:</strong> <span th:text="${booking.guestName}">Guest Name</span></p>
+            <p><strong>Email:</strong> <span th:text="${booking.email}">guest@example.com</span></p>
+            <p><strong>Phone:</strong> <span th:text="${booking.phone}">1234567890</span></p>
+        </div>
+
+        <!-- Booking Details Section -->
+        <h2 class="text-2xl font-semibold text-gray-800">Booking Details</h2>
+        <div class="space-y-2 text-gray-600">
+            <p><strong>Hotel:</strong> <span th:text="${booking.hotel.name}">Hotel Name</span></p>
+            <p><strong>Location:</strong> <span th:text="${booking.hotel.location}">Location</span></p>
+            <p><strong>Check-In Date:</strong> <span th:text="${booking.checkInDate}">YYYY-MM-DD</span></p>
+            <p><strong>Check-Out Date:</strong> <span th:text="${booking.checkOutDate}">YYYY-MM-DD</span></p>
+            <p><strong>Room Type:</strong> <span th:text="${booking.roomType}">Room Type</span></p>
+            <p><strong>Adults:</strong> <span th:text="${booking.adults}">0</span></p>
+            <p><strong>Children:</strong> <span th:text="${booking.children}">0</span></p>
+            <p><strong>Total Nights:</strong> <span th:text="${booking.totalNights}">0</span></p>
+            <p><strong>Total Price:</strong> ₹<span th:text="${booking.totalPrice}">0.00</span></p>
+        </div>
+    </div>
+
+    <!-- Back to Hotels Button -->
+    <div class="text-center mt-6">
+        <a th:href="@{/hotels}" class="text-blue-600 hover:underline text-lg">← Back to Hotels</a>
+    </div>
+
+    <!-- Recommended Tour Packages Button -->
+    <div class="text-center mt-6">
+        <a th:href="@{/tourpackages/location/{location}(location=${booking.hotel.location})}"
+           class="inline-block bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 transition">
+            🌍 Recommended Tour Packages
+        </a>
+
+    </div>
+
+    <!-- Recommended Cars Button -->
+    <div class="text-center mt-4">
+        <a th:href="@{/cars/location/{location}(location=${booking.hotel.location})}"
+           class="inline-block bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition">
+            🚗 Recommended Cars
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
