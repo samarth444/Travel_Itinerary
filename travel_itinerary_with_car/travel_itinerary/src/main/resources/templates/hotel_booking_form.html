@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Hotel</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+
+<div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg mt-12">
+
+    <h1 class="text-2xl font-bold text-gray-800 text-center mb-6">
+        Book a Stay at <span th:text="${hotel.name}">Hotel Name</span>
+    </h1>
+
+    <form th:action="@{'/hotelbookings/' + ${hotel.id} + '/book'}" method="post" class="space-y-6">
+
+        <!-- Full Name -->
+        <div>
+            <label for="guestName" class="block text-gray-700 font-medium">Full Name</label>
+            <input type="text" id="guestName" name="guestName" placeholder="Your full name" required
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <!-- Email -->
+        <div>
+            <label for="email" class="block text-gray-700 font-medium">Email ID</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <!-- Phone -->
+        <div>
+            <label for="phone" class="block text-gray-700 font-medium">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="e.g., +91XXXXXXXXXX" required
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <!-- Check-In Date -->
+        <div>
+            <label for="checkInDate" class="block text-gray-700 font-medium">Check-In Date</label>
+            <input type="date" id="checkInDate" name="checkInDate" required
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <!-- Check-Out Date -->
+        <div>
+            <label for="checkOutDate" class="block text-gray-700 font-medium">Check-Out Date</label>
+            <input type="date" id="checkOutDate" name="checkOutDate" required
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <!-- Room Type -->
+        <div>
+            <label for="roomType" class="block text-gray-700 font-medium">Room Type</label>
+            <select id="roomType" name="roomType" required
+                    class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <option value="Standard">Standard</option>
+                <option value="Deluxe">Deluxe</option>
+                <option value="Suite">Suite</option>
+            </select>
+        </div>
+
+        <!-- Adults -->
+        <div>
+            <label for="adults" class="block text-gray-700 font-medium">Number of Adults</label>
+            <input type="number" id="adults" name="adults" min="1" required
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <!-- Children -->
+        <div>
+            <label for="children" class="block text-gray-700 font-medium">Number of Children</label>
+            <input type="number" id="children" name="children" min="0" required
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                Book Now
+            </button>
+        </div>
+
+    </form>
+
+    <a th:href="@{/hotels}" class="block text-center text-blue-600 hover:underline mt-6">
+        ← Back to Listings
+    </a>
+</div>
+
+</body>
+</html>
