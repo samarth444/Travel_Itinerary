@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Car</title>
+</head>
+<body>
+<h2>Book Car</h2>
+
+<form th:action="@{/cars/book}" method="post">
+    <!-- Hidden carId -->
+    <input type="hidden" name="carId" th:value="${car.id}" />
+
+    <!-- Name -->
+    Name: <input type="text" name="userName" required><br>
+
+    <!-- Email -->
+    Email: <input type="email" name="email" required><br>
+
+    <!-- Phone Number -->
+    Phone Number: <input type="text" name="phoneNumber" required><br>
+
+    <!-- Location -->
+    Location: <input type="text" name="location" th:value="${car.location}" required><br>
+
+    <!-- Pickup Date -->
+    Pickup Date: <input type="date" name="pickupDate" required><br>
+
+    <!-- Drop-off Date -->
+    Drop-off Date: <input type="date" name="dropoffDate" required><br>
+
+    <!-- Submit -->
+    <button type="submit">Confirm Booking</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Car</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+        label {
+            font-size: 14px;
+            color: #495057;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+        }
+    </style>
+    <script>
+        // This script will set the min attribute for pickup and dropoff dates to today's date
+        window.onload = function() {
+            let today = new Date().toISOString().split("T")[0];
+            document.getElementById("pickupDate").setAttribute("min", today);
+            document.getElementById("dropoffDate").setAttribute("min", today);
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Book Your Car: <span th:text="${car.brand} + ' ' + ${car.model}"></span></h2>
+
+    <form th:action="@{/cars/book}" method="post">
+        <input type="hidden" name="carId" th:value="${car.id}" />
+
+        <label for="userName">Name:</label>
+        <input type="text" id="userName" name="userName" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required><br>
+
+        <label for="pickupDate">Pickup Date:</label>
+        <input type="date" id="pickupDate" name="pickupDate" required><br>
+
+        <label for="dropoffDate">Dropoff Date:</label>
+        <input type="date" id="dropoffDate" name="dropoffDate" required><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" th:value="${car.location}" required><br>
+
+        <button type="submit">Book Now</button>
+    </form>
+
+    <div th:if="${error}" class="error-message">
+        <p th:text="${error}"></p>
+    </div>
+</div>
+
+</body>
+</html>

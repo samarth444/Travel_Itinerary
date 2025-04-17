@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+    <h2>Booking Confirmation</h2>
+    <p>Thank you for your booking, <strong th:text="${booking.userName}">User</strong>!</p>
+    <p><strong>Car ID:</strong> <span th:text="${booking.carId}">Car</span></p>
+    <p><strong>Location:</strong> <span th:text="${booking.location}">Location</span></p>
+    <p><strong>Pickup Date:</strong> <span th:text="${booking.pickupDate}">Pickup</span></p>
+    <p><strong>Dropoff Date:</strong> <span th:text="${booking.dropoffDate}">Dropoff</span></p>
+    <p><strong>Booking Date:</strong> <span th:text="${booking.bookingDate}">Booking Date</span></p>
+    <p><strong>Car Price per Day:</strong> $<span th:text="${booking.carPricePerDay}">Price</span></p>
+    <p><strong>Total Cost:</strong> $<span th:text="${booking.totalCost}">Total</span></p>
+
+    <a href="/cars">Back to Car Listings</a>
+</div>
+</body>
+</html>

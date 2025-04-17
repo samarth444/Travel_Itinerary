@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Tour Package</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto mt-8">
+    <h1 class="text-3xl font-bold mb-6">Add New Tour Package</h1>
+    <form action="/tourpackages/add" method="POST" class="bg-white p-8 rounded-lg shadow-lg">
+        <div class="mb-4">
+            <label for="name" class="block text-lg font-semibold">Tour Name</label>
+            <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded" required>
+        </div>
+        <div class="mb-4">
+            <label for="description" class="block text-lg font-semibold">Description</label>
+            <textarea id="description" name="description" class="w-full p-3 border border-gray-300 rounded" required></textarea>
+        </div>
+        <div class="mb-4">
+            <label for="price" class="block text-lg font-semibold">Price</label>
+            <input type="number" id="price" name="price" class="w-full p-3 border border-gray-300 rounded" required>
+        </div>
+        <div class="mb-4">
+            <label for="duration" class="block text-lg font-semibold">Duration</label>
+            <input type="text" id="duration" name="duration" class="w-full p-3 border border-gray-300 rounded" required>
+        </div>
+        <div class="mb-4">
+            <label for="location" class="block text-lg font-semibold">Location</label>
+            <input type="text" id="location" name="location" class="w-full p-3 border border-gray-300 rounded" required>
+        </div>
+        <div class="mb-4">
+            <label for="season" class="block text-lg font-semibold">Season</label>
+            <input type="text" id="season" name="season" class="w-full p-3 border border-gray-300 rounded" required>
+        </div>
+        <div class="mb-4">
+            <label for="availableSpots" class="block text-lg font-semibold">Available Spots</label>
+            <input type="number" id="availableSpots" name="availableSpots" class="w-full p-3 border border-gray-300 rounded" required>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded mt-4">Add Package</button>
+    </form>
+</div>
+</body>
+</html>
