@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Flights</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-12">
+    <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">Available Flights</h1>
+
+    <div class="space-y-6">
+        <!-- Iterate through each flight -->
+        <div th:each="flight : ${flights}" class="flex justify-between items-center border-b py-4">
+            <div class="flex flex-col w-full">
+                <!-- Flight Airline and Number -->
+                <span class="text-xl font-semibold text-gray-800" th:text="${flight.airline} + ' (' + ${flight.flightNumber} + ')'" >Airline (Flight Number)</span>
+
+                <!-- From and To Location -->
+                <span class="text-gray-600" th:text="${flight.fromLocation} + ' to ' + ${flight.toLocation}" >From City to Destination</span>
+
+                <!-- Departure Date with fallback if not available -->
+                <span class="text-gray-500" th:text="${#dates.format(flight.departureDate, 'yyyy-MM-dd')}">
+                    <span th:if="${flight.departureDate == null}" class="text-red-500 font-semibold">Date Not Available</span>
+                </span>
+
+                <!-- Price with currency symbol -->
+                <span class="text-gray-600" th:text="'₹' + ${flight.price}">₹0.00</span>
+            </div>
+
+            <!-- Booking Button -->
+            <a th:href="@{/flightbookings/{flightId}/book(flightId=${flight.id})}"
+               class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition">
+                Book Now
+            </a>
+        </div>
+    </div>
+
+    <div class="mt-8 text-center">
+        <a href="/" class="text-blue-600 hover:underline">Back to Home</a>
+    </div>
+</div>
+
+</body>
+</html>

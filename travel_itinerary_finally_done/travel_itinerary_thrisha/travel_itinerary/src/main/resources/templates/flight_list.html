@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Flights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<div class="max-w-6xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Available Flights</h1>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border border-gray-200 rounded-lg">
+            <thead class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+            <tr>
+                <th class="py-3 px-6 text-center">ID</th>
+                <th class="py-3 px-6 text-center">Airline</th>
+                <th class="py-3 px-6 text-center">Flight No.</th>
+                <th class="py-3 px-6 text-center">From</th>
+                <th class="py-3 px-6 text-center">To</th>
+                <th class="py-3 px-6 text-center">Price (INR)</th>
+                <th class="py-3 px-6 text-center">Seats</th>
+                <th class="py-3 px-6 text-center">Action</th>
+            </tr>
+            </thead>
+            <tbody class="text-gray-700 text-sm font-medium">
+            <tr th:each="flight : ${flights}" class="border-b border-gray-100 hover:bg-gray-50">
+                <td class="py-4 px-6 text-center" th:text="${flight.id}">1</td>
+                <td class="py-4 px-6 text-center" th:text="${flight.airline}">Air India</td>
+                <td class="py-4 px-6 text-center" th:text="${flight.flightNumber}">AI101</td>
+                <td class="py-4 px-6 text-center" th:text="${flight.fromLocation}">Delhi</td>
+                <td class="py-4 px-6 text-center" th:text="${flight.toLocation}">Mumbai</td>
+                <td class="py-4 px-6 text-center" th:text="${flight.price}">5000</td>
+                <td class="py-4 px-6 text-center" th:text="${flight.seatsAvailable}">100</td>
+                <td class="py-4 px-6 text-center">
+                    <a th:href="@{/flights/{id}/book(id=${flight.id})}"
+                       class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200">
+                        Book Now
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Go Back Button -->
+    <div class="mt-8 text-center">
+        <a th:href="@{/}"
+           class="bg-gray-500 text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-600 transition duration-300">
+            Go Back
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
