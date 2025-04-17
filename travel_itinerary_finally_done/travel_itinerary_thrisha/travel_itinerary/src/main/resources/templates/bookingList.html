@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Bookings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center mb-8">All Bookings</h1>
+
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <table class="min-w-full table-auto">
+            <thead>
+            <tr>
+                <th class="py-2 px-4 border">Booking ID</th>
+                <th class="py-2 px-4 border">Name</th>
+                <th class="py-2 px-4 border">Tour Package</th>
+                <th class="py-2 px-4 border">Booking Date</th>
+                <th class="py-2 px-4 border">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="booking : ${tourBookings}">
+                <td class="py-2 px-4 border" th:text="${booking.id}"></td>
+                <td class="py-2 px-4 border" th:text="${booking.name}"></td>
+                <td class="py-2 px-4 border" th:text="${booking.tourPackage.name}"></td>
+                <td class="py-2 px-4 border" th:text="${booking.bookingDate}"></td>
+                <td class="py-2 px-4 border" th:text="${booking.status}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

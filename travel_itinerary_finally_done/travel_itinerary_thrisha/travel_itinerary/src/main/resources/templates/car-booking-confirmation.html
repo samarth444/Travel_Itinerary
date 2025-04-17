@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #28a745;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        strong {
+            color: #495057;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #6c757d;
+        }
+
+        .back-link {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Booking Confirmation</h2>
+
+    <p>Thank you for your booking, <strong th:text="${booking.userName}">User</strong>!</p>
+    <p><span class="label">Car ID:</span> <span th:text="${booking.carId}">Car</span></p>
+    <p><span class="label">Location:</span> <span th:text="${booking.location}">Location</span></p>
+    <p><span class="label">Pickup Date:</span> <span th:text="${booking.pickupDate}">Pickup</span></p>
+    <p><span class="label">Dropoff Date:</span> <span th:text="${booking.dropoffDate}">Dropoff</span></p>
+    <p><span class="label">Booking Date:</span> <span th:text="${booking.bookingDate}">Booking Date</span></p>
+    <p><span class="label">Car Price per Day:</span> ₹<span th:text="${booking.carPricePerDay}">Price</span></p>
+    <p><span class="label">Total Cost:</span> ₹<span th:text="${booking.totalCost}">Total</span></p>
+
+    <a href="/cars" class="back-link">Back to Car Listings</a>
+</div>
+</body>
+</html>
